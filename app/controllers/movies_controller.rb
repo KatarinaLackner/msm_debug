@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def create_row
+    @movie = Movie.new
     @movie.title = params[:the_title]
     @movie.year = params[:the_year]
     @movie.duration = params[:the_duration]
@@ -20,7 +21,7 @@ class MoviesController < ApplicationController
 
     @movie.save
 
-    render("show")
+    redirect_to("/movies/" + @movie.id.to.s)
   end
 
   def edit_form
@@ -42,5 +43,8 @@ class MoviesController < ApplicationController
     movie = Movie.find(params[:id])
 
     movie.destroy
+
+    #redirect_to("/movies" + .... )
+
   end
 end
